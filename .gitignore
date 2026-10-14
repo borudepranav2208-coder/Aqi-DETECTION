@@ -16,6 +16,3 @@ __pycache__/
 # OS specific
 .DS_Store
 Thumbs.db
-
-# Helper scripts
-upload_to_github.bat
