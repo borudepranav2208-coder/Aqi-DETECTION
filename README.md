@@ -8,7 +8,6 @@
 [![Scikit-Learn](https://img.shields.io/badge/scikit--learn-1.9-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white)](https://scikit-learn.org/)
 [![Pandas](https://img.shields.io/badge/Pandas-Data%20Analysis-150458?style=for-the-badge&logo=pandas&logoColor=white)](https://pandas.pydata.org/)
 [![Chart.js](https://img.shields.io/badge/Chart.js-Data%20Viz-FF6384?style=for-the-badge&logo=chartdotjs&logoColor=white)](https://www.chartjs.org/)
-[![License](https://img.shields.io/badge/License-MIT-22c55e?style=for-the-badge)](LICENSE)
 
 <br/>
 
@@ -255,11 +254,6 @@ Contributions, issues, and feature suggestions are welcome!
 4. Push to the Branch (`git push origin feature/AmazingFeature`).
 5. Open a Pull Request.
 
----
-
-## 📄 License
-
-This project is distributed under the **MIT License**. See `LICENSE` for details.
 
 <div align="center">
   <br/>
