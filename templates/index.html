@@ -1,0 +1,1701 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        AQI Insight Hub | Air Quality Prediction
+    </title>
+
+
+    <!-- =====================================================
+         GOOGLE FONT
+    ====================================================== -->
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- =====================================================
+         CSS
+    ====================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+
+    <!-- =====================================================
+         CHART.JS
+    ====================================================== -->
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/chart.js"
+    ></script>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     NAVBAR
+========================================================= -->
+
+<header class="navbar">
+
+    <div class="nav-container">
+
+        <a
+            href="#home"
+            class="logo"
+        >
+
+            <span class="logo-icon">
+                🌿
+            </span>
+
+            <span>
+                AQI
+                <strong>Insight</strong>
+            </span>
+
+        </a>
+
+
+        <nav class="nav-links">
+
+            <a href="#home">
+                Home
+            </a>
+
+            <a href="#statistics">
+                Statistics
+            </a>
+
+            <a href="#categories">
+                AQI Categories
+            </a>
+
+            <a href="#pollutants">
+                Pollutants
+            </a>
+
+            <a href="#visualization">
+                Charts
+            </a>
+
+            <a href="#explorer">
+                Explorer
+            </a>
+
+            <a href="#health">
+                Health
+            </a>
+
+            <a href="#prediction">
+                Prediction
+            </a>
+
+        </nav>
+
+    </div>
+
+</header>
+
+
+
+<!-- =========================================================
+     HERO / HOME
+========================================================= -->
+
+<section
+    id="home"
+    class="hero"
+>
+
+    <div class="hero-particles"></div>
+
+
+    <div class="hero-overlay"></div>
+
+
+    <div class="hero-content">
+
+        <p class="section-label">
+            DATA • ANALYSIS • MACHINE LEARNING
+        </p>
+
+
+        <h1>
+
+            Air Quality Index
+
+            <span>
+                Prediction
+            </span>
+
+        </h1>
+
+
+        <p class="hero-subtitle">
+
+            Using Machine Learning
+            &
+            Random Forest Regression
+
+        </p>
+
+
+        <p class="hero-description">
+
+            Explore real-world air quality data,
+            understand pollution patterns,
+            visualize AQI trends,
+            and predict air quality using
+            machine learning.
+
+        </p>
+
+
+        <div class="hero-buttons">
+
+            <a
+                href="#statistics"
+                class="btn-primary"
+            >
+                Explore Data
+            </a>
+
+
+            <a
+                href="#prediction"
+                class="btn-secondary"
+            >
+                View ML Model
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     STATISTICS
+========================================================= -->
+
+<section
+    id="statistics"
+    class="section"
+>
+
+    <div class="section-heading">
+
+        <p class="section-label">
+            DATASET OVERVIEW
+        </p>
+
+
+        <h2>
+            Air Quality Statistics
+        </h2>
+
+
+        <p>
+            Key statistics calculated directly
+            from the AQI dataset.
+        </p>
+
+    </div>
+
+
+    <div class="stats-grid">
+
+
+        <!-- TOTAL RECORDS -->
+
+        <div class="stat-card reveal">
+
+            <div class="stat-icon">
+                📊
+            </div>
+
+            <span>
+                Total Records
+            </span>
+
+            <strong id="totalRecords">
+                0
+            </strong>
+
+            <p>
+                Dataset observations
+            </p>
+
+        </div>
+
+
+        <!-- STATES -->
+
+        <div class="stat-card reveal">
+
+            <div class="stat-icon">
+                🇮🇳
+            </div>
+
+            <span>
+                Total States
+            </span>
+
+            <strong id="totalStates">
+                0
+            </strong>
+
+            <p>
+                States represented
+            </p>
+
+        </div>
+
+
+        <!-- AREAS -->
+
+        <div class="stat-card reveal">
+
+            <div class="stat-icon">
+                📍
+            </div>
+
+            <span>
+                Total Areas
+            </span>
+
+            <strong id="totalAreas">
+                0
+            </strong>
+
+            <p>
+                Monitoring locations
+            </p>
+
+        </div>
+
+
+        <!-- AVERAGE AQI -->
+
+        <div class="stat-card reveal">
+
+            <div class="stat-icon">
+                🌤️
+            </div>
+
+            <span>
+                Average AQI
+            </span>
+
+            <strong id="averageAQI">
+                0
+            </strong>
+
+            <p>
+                Overall average
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     AQI CATEGORIES
+========================================================= -->
+
+<section
+    id="categories"
+    class="section"
+>
+
+    <div class="section-heading">
+
+        <p class="section-label">
+            AIR QUALITY
+        </p>
+
+
+        <h2>
+            AQI Categories
+        </h2>
+
+
+        <p>
+            Understand what different AQI levels
+            mean for health.
+        </p>
+
+    </div>
+
+
+    <div class="category-grid">
+
+
+        <div class="category-card good reveal">
+
+            <div class="category-number">
+                01
+            </div>
+
+            <h3>
+                Good
+            </h3>
+
+            <strong>
+                0 – 50
+            </strong>
+
+            <p>
+                Air quality is considered good
+                and poses little or no risk.
+            </p>
+
+        </div>
+
+
+        <div class="category-card satisfactory reveal">
+
+            <div class="category-number">
+                02
+            </div>
+
+            <h3>
+                Satisfactory
+            </h3>
+
+            <strong>
+                51 – 100
+            </strong>
+
+            <p>
+                Air quality is acceptable,
+                although sensitive people may
+                experience minor effects.
+            </p>
+
+        </div>
+
+
+        <div class="category-card moderate reveal">
+
+            <div class="category-number">
+                03
+            </div>
+
+            <h3>
+                Moderate
+            </h3>
+
+            <strong>
+                101 – 200
+            </strong>
+
+            <p>
+                Sensitive people may experience
+                health discomfort.
+            </p>
+
+        </div>
+
+
+        <div class="category-card poor reveal">
+
+            <div class="category-number">
+                04
+            </div>
+
+            <h3>
+                Poor
+            </h3>
+
+            <strong>
+                201 – 300
+            </strong>
+
+            <p>
+                Prolonged exposure may affect
+                sensitive and vulnerable groups.
+            </p>
+
+        </div>
+
+
+        <div class="category-card very-poor reveal">
+
+            <div class="category-number">
+                05
+            </div>
+
+            <h3>
+                Very Poor
+            </h3>
+
+            <strong>
+                301 – 400
+            </strong>
+
+            <p>
+                Increased risk of respiratory
+                and other health effects.
+            </p>
+
+        </div>
+
+
+        <div class="category-card severe reveal">
+
+            <div class="category-number">
+                06
+            </div>
+
+            <h3>
+                Severe
+            </h3>
+
+            <strong>
+                401+
+            </strong>
+
+            <p>
+                Serious health effects are
+                possible.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     POLLUTANTS
+========================================================= -->
+
+<section
+    id="pollutants"
+    class="section"
+>
+
+    <div class="section-heading">
+
+        <p class="section-label">
+            POLLUTION ANALYSIS
+        </p>
+
+
+        <h2>
+            Prominent Pollutants
+        </h2>
+
+
+        <p>
+            Pollutant information calculated
+            directly from the dataset.
+        </p>
+
+    </div>
+
+
+    <!-- IMPORTANT:
+         main.js fills this container
+    -->
+
+    <div
+        class="pollutant-grid"
+        id="pollutantGrid"
+    >
+
+        <div class="pollutant-card">
+
+            <div class="pollutant-icon">
+                🌫️
+            </div>
+
+            <h3>
+                Loading...
+            </h3>
+
+            <p>
+                Loading pollutant information
+                from the dataset.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     VISUALIZATION
+========================================================= -->
+
+<section
+    id="visualization"
+    class="section"
+>
+
+    <div class="section-heading">
+
+        <p class="section-label">
+            DATA VISUALIZATION
+        </p>
+
+
+        <h2>
+            Explore AQI Data
+        </h2>
+
+
+        <p>
+            Charts and graphs generated from
+            the actual dataset.
+        </p>
+
+    </div>
+
+
+    <div class="charts-grid">
+
+
+        <!-- AQI STATUS -->
+
+        <div class="chart-card reveal">
+
+            <div class="chart-header">
+
+                <h3>
+                    AQI Category Distribution
+                </h3>
+
+                <p>
+                    Distribution of air quality
+                    categories.
+                </p>
+
+            </div>
+
+
+            <div class="chart-container">
+
+                <canvas
+                    id="statusChart"
+                ></canvas>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- POLLUTANTS -->
+
+        <div class="chart-card reveal">
+
+            <div class="chart-header">
+
+                <h3>
+                    Pollutant Distribution
+                </h3>
+
+                <p>
+                    Number of records associated
+                    with each pollutant.
+                </p>
+
+            </div>
+
+
+            <div class="chart-container">
+
+                <canvas
+                    id="pollutantChart"
+                ></canvas>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- STATES -->
+
+        <div class="chart-card reveal">
+
+            <div class="chart-header">
+
+                <h3>
+                    State-wise Records
+                </h3>
+
+                <p>
+                    Dataset records across states.
+                </p>
+
+            </div>
+
+
+            <div class="chart-container">
+
+                <canvas
+                    id="stateChart"
+                ></canvas>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- YEARLY -->
+
+        <div class="chart-card reveal">
+
+            <div class="chart-header">
+
+                <h3>
+                    Year-wise Average AQI
+                </h3>
+
+                <p>
+                    Average AQI across available
+                    years.
+                </p>
+
+            </div>
+
+
+            <div class="chart-container">
+
+                <canvas
+                    id="yearlyChart"
+                ></canvas>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         DATASET VISUAL SUMMARY
+    ====================================================== -->
+
+    <div class="visual-summary">
+
+        <div class="section-heading">
+
+            <p class="section-label">
+                DATA RELATIONSHIPS
+            </p>
+
+
+            <h2>
+                AQI Data Relationship
+            </h2>
+
+        </div>
+
+
+        <!-- VENN STYLE VISUALIZATION -->
+
+        <div class="venn-container reveal">
+
+            <div class="venn-circle venn-data">
+
+                <span>
+                    Dataset
+                </span>
+
+            </div>
+
+
+            <div class="venn-circle venn-pollution">
+
+                <span>
+                    Pollution
+                </span>
+
+            </div>
+
+
+            <div class="venn-circle venn-health">
+
+                <span>
+                    Health
+                </span>
+
+            </div>
+
+
+            <div class="venn-center">
+
+                AQI
+
+            </div>
+
+        </div>
+
+
+        <p class="visual-description">
+
+            The AQI dataset connects
+            monitoring information,
+            prominent pollutants and
+            air-quality health categories.
+
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     DATASET EXPLORER
+========================================================= -->
+
+<section
+    id="explorer"
+    class="section"
+>
+
+    <div class="section-heading">
+
+        <p class="section-label">
+            DATA EXPLORER
+        </p>
+
+
+        <h2>
+            Explore Dataset
+        </h2>
+
+
+        <p>
+            Search and inspect records from
+            the AQI dataset.
+        </p>
+
+    </div>
+
+
+    <!-- SEARCH -->
+
+    <div class="explorer-search">
+
+        <input
+            type="text"
+            id="datasetSearch"
+            placeholder="Search state, area, pollutant, AQI..."
+        >
+
+    </div>
+
+
+    <!-- DATASET TABLE -->
+
+    <div class="table-wrapper">
+
+        <table
+            id="datasetTable"
+            class="dataset-table"
+        >
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        Loading...
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody
+                id="datasetTableBody"
+            >
+
+                <tr>
+
+                    <td>
+                        Loading dataset...
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+    <!-- COLUMN INFORMATION -->
+
+    <div class="column-information">
+
+        <div class="section-heading">
+
+            <p class="section-label">
+                DATA STRUCTURE
+            </p>
+
+
+            <h3>
+                Dataset Columns
+            </h3>
+
+        </div>
+
+
+        <div
+            id="columnInformation"
+            class="column-grid"
+        >
+
+            <p>
+                Loading column information...
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     DATASET HEALTH
+========================================================= -->
+
+<section
+    id="health"
+    class="section health-section"
+>
+
+    <div class="section-heading">
+
+        <p class="section-label">
+            DATA QUALITY
+        </p>
+
+
+        <h2>
+            Dataset Health
+        </h2>
+
+
+        <p>
+            Check the quality and cleanliness
+            of the dataset.
+        </p>
+
+    </div>
+
+
+    <div class="health-dashboard">
+
+
+        <!-- HEALTH SCORE -->
+
+        <div class="health-score-card reveal">
+
+            <div
+                class="health-circle"
+                id="healthCircle"
+            >
+
+                <div>
+
+                    <strong id="healthScore">
+                        0
+                    </strong>
+
+                    <span>
+                        / 100
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <h3 id="healthStatus">
+                Checking...
+            </h3>
+
+        </div>
+
+
+
+        <!-- HEALTH DETAILS -->
+
+        <div class="health-details">
+
+
+            <div class="health-item reveal">
+
+                <span>
+                    Missing Values
+                </span>
+
+                <strong id="missingValues">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="health-item reveal">
+
+                <span>
+                    Duplicate Rows
+                </span>
+
+                <strong id="duplicateRows">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="health-item reveal">
+
+                <span>
+                    AQI Outliers
+                </span>
+
+                <strong id="aqiOutliers">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="health-item reveal">
+
+                <span>
+                    Total Rows
+                </span>
+
+                <strong id="healthRows">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="health-item reveal">
+
+                <span>
+                    Total Columns
+                </span>
+
+                <strong id="healthColumns">
+                    0
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     MACHINE LEARNING
+========================================================= -->
+
+<section
+    id="prediction"
+    class="section"
+>
+
+    <div class="section-heading">
+
+        <p class="section-label">
+            MACHINE LEARNING
+        </p>
+
+
+        <h2>
+            Random Forest Regression
+        </h2>
+
+
+        <p>
+            Machine learning model performance
+            and interactive AQI prediction.
+        </p>
+
+    </div>
+
+
+    <!-- =====================================================
+         MODEL INTRO
+    ====================================================== -->
+
+    <div class="model-intro reveal">
+
+        <div class="model-icon">
+            🤖
+        </div>
+
+
+        <div>
+
+            <h3>
+                AQI Prediction Model
+            </h3>
+
+
+            <p>
+
+                The Random Forest Regression
+                model learns patterns from
+                state, area, monitoring stations
+                and prominent pollutant data
+                to estimate AQI.
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         MODEL METRICS
+    ====================================================== -->
+
+    <div class="model-metrics">
+
+
+        <div class="metric-card reveal">
+
+            <span>
+                MAE
+            </span>
+
+
+            <strong id="maeValue">
+                0
+            </strong>
+
+
+            <p>
+                Mean Absolute Error
+            </p>
+
+        </div>
+
+
+        <div class="metric-card reveal">
+
+            <span>
+                RMSE
+            </span>
+
+
+            <strong id="rmseValue">
+                0
+            </strong>
+
+
+            <p>
+                Root Mean Square Error
+            </p>
+
+        </div>
+
+
+        <div class="metric-card reveal">
+
+            <span>
+                R²
+            </span>
+
+
+            <strong id="r2Value">
+                0
+            </strong>
+
+
+            <p>
+                Model R-Squared Score
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         WORKFLOW
+    ====================================================== -->
+
+    <div class="workflow">
+
+
+        <div class="workflow-step reveal">
+
+            <div class="workflow-number">
+                01
+            </div>
+
+
+            <h3>
+                Dataset
+            </h3>
+
+
+            <p>
+                AQI data is loaded and analyzed
+                using Pandas.
+            </p>
+
+        </div>
+
+
+
+        <div class="workflow-step reveal">
+
+            <div class="workflow-number">
+                02
+            </div>
+
+
+            <h3>
+                Data Processing
+            </h3>
+
+
+            <p>
+                Numerical and categorical
+                features are prepared.
+            </p>
+
+        </div>
+
+
+
+        <div class="workflow-step reveal">
+
+            <div class="workflow-number">
+                03
+            </div>
+
+
+            <h3>
+                Random Forest
+            </h3>
+
+
+            <p>
+                Multiple decision trees learn
+                AQI patterns.
+            </p>
+
+        </div>
+
+
+
+        <div class="workflow-step reveal">
+
+            <div class="workflow-number">
+                04
+            </div>
+
+
+            <h3>
+                Prediction
+            </h3>
+
+
+            <p>
+                The trained model estimates
+                AQI for new inputs.
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         PREDICTION FORM
+         
+         MAIN.JS automatically inserts the
+         interactive prediction form here.
+    ====================================================== -->
+
+</section>
+
+
+
+<!-- =========================================================
+     TECHNOLOGY
+========================================================= -->
+
+<section
+    id="technology"
+    class="section"
+>
+
+    <div class="section-heading">
+
+        <p class="section-label">
+            TECHNOLOGY STACK
+        </p>
+
+
+        <h2>
+            Technologies Used
+        </h2>
+
+
+        <p>
+            Tools and technologies used to
+            build this AQI project.
+        </p>
+
+    </div>
+
+
+    <div class="technology-grid">
+
+
+        <div class="technology-card reveal">
+
+            <div class="technology-icon">
+                🔢
+            </div>
+
+
+            <h3>
+                NumPy
+            </h3>
+
+
+            <p>
+                Numerical computing and
+                mathematical operations.
+            </p>
+
+        </div>
+
+
+
+        <div class="technology-card reveal">
+
+            <div class="technology-icon">
+                🐼
+            </div>
+
+
+            <h3>
+                Pandas
+            </h3>
+
+
+            <p>
+                Dataset loading, cleaning,
+                analysis and processing.
+            </p>
+
+        </div>
+
+
+
+        <div class="technology-card reveal">
+
+            <div class="technology-icon">
+                📈
+            </div>
+
+
+            <h3>
+                Matplotlib
+            </h3>
+
+
+            <p>
+                Data visualization and
+                graphical analysis.
+            </p>
+
+        </div>
+
+
+
+        <div class="technology-card reveal">
+
+            <div class="technology-icon">
+                📊
+            </div>
+
+
+            <h3>
+                Seaborn
+            </h3>
+
+
+            <p>
+                Statistical data visualization
+                and analysis.
+            </p>
+
+        </div>
+
+
+
+        <div class="technology-card reveal">
+
+            <div class="technology-icon">
+                🌲
+            </div>
+
+
+            <h3>
+                Random Forest
+            </h3>
+
+
+            <p>
+                Machine learning based AQI
+                prediction.
+            </p>
+
+        </div>
+
+
+
+        <div class="technology-card reveal">
+
+            <div class="technology-icon">
+                🐍
+            </div>
+
+
+            <h3>
+                Python
+            </h3>
+
+
+            <p>
+                Backend development and
+                machine learning.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     PROJECT OBJECTIVES
+========================================================= -->
+
+<section
+    id="objectives"
+    class="section"
+>
+
+    <div class="section-heading">
+
+        <p class="section-label">
+            PROJECT OBJECTIVES
+        </p>
+
+
+        <h2>
+            What This Project Does
+        </h2>
+
+    </div>
+
+
+    <div class="objective-grid">
+
+
+        <div class="objective-card reveal">
+
+            <span>
+                01
+            </span>
+
+            <h3>
+                Analyze AQI Data
+            </h3>
+
+            <p>
+                Study real-world air quality
+                records using Python.
+            </p>
+
+        </div>
+
+
+        <div class="objective-card reveal">
+
+            <span>
+                02
+            </span>
+
+            <h3>
+                Visualize Pollution
+            </h3>
+
+            <p>
+                Convert complex dataset
+                information into useful
+                visualizations.
+            </p>
+
+        </div>
+
+
+        <div class="objective-card reveal">
+
+            <span>
+                03
+            </span>
+
+            <h3>
+                Predict AQI
+            </h3>
+
+            <p>
+                Use Random Forest Regression
+                for AQI prediction.
+            </p>
+
+        </div>
+
+
+        <div class="objective-card reveal">
+
+            <span>
+                04
+            </span>
+
+            <h3>
+                Understand Health Impact
+            </h3>
+
+            <p>
+                Connect AQI levels with
+                understandable health advice.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     CALL TO ACTION
+========================================================= -->
+
+<section
+    id="cta"
+    class="cta-section"
+>
+
+    <div class="cta-content">
+
+        <p class="section-label">
+            AQI INSIGHT HUB
+        </p>
+
+
+        <h2>
+            Understand Your Air.
+            Understand Your Health.
+        </h2>
+
+
+        <p>
+            Explore the dataset, visualize
+            pollution patterns and try the
+            machine learning prediction model.
+        </p>
+
+
+        <div class="hero-buttons">
+
+            <a
+                href="#visualization"
+                class="btn-primary"
+            >
+                Explore Visualization
+            </a>
+
+
+            <a
+                href="#prediction"
+                class="btn-secondary"
+            >
+                Predict AQI
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer class="footer">
+
+    <div class="footer-container">
+
+
+        <div class="footer-brand">
+
+            <h3>
+                🌿 AQI Insight Hub
+            </h3>
+
+
+            <p>
+                Air Quality Index Prediction
+                Using Machine Learning.
+            </p>
+
+        </div>
+
+
+
+        <div class="footer-project">
+
+            <h4>
+                Project Guide
+            </h4>
+
+
+            <p>
+                Kavita Kolpe
+            </p>
+
+        </div>
+
+
+
+        <div class="footer-project">
+
+            <h4>
+                Team Members
+            </h4>
+
+
+            <p>
+                Arnav Potdar
+            </p>
+
+            <p>
+                Aryan Solapure
+            </p>
+
+            <p>
+                Pranav Borude
+            </p>
+
+            <p>
+                Tanish Chavan
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <p>
+            © 2026 AQI Insight Hub.
+            Data Exploration & Visualisation Laboratory.
+        </p>
+
+    </div>
+
+</footer>
+
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+<script
+    src="{{ url_for('static', filename='js/main.js') }}"
+></script>
+
+
+</body>
+
+</html>
